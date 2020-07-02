@@ -17,8 +17,12 @@ import * as serviceWorker from "./serviceWorker";
 //<App />
 
 // This component can be added ad <ChildComponent/ inside render methfo>
-const ChildComponent = () => <h3>This is child component</h3>;
-
+const ChildComponent = (props) => <h3>This is child component</h3>;
+const InfoComp = (props) => (
+	<h3>
+		Hi my name is {props.name} a.k.a {props.username}
+	</h3>
+);
 class MyComponent extends React.Component {
 	constructor(props) {
 		super(props);
@@ -28,6 +32,7 @@ class MyComponent extends React.Component {
 			<div>
 				<h1>Hello React!</h1>
 				<ChildComponent />
+				<InfoComp name="Prathamesh" username="Pratham82" />
 			</div>
 		);
 	}
