@@ -26,13 +26,36 @@ const InfoComp = (props) => (
 class MyComponent extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			name: "Joe Jonas",
+			bandName: "21 Pilots",
+			book: "Deep work",
+		};
+		this.handleClick = this.handleClick.bind(this);
 	}
+
+	handleClick() {
+		// change code below this line
+		this.setState({
+			name: "React Rocks!",
+			book: "Think and Grow Rich",
+		});
+		// change code above this line
+	}
+
 	render() {
+		const newVal = this.state.name;
+		const bandName = this.state.bandName;
+
 		return (
 			<div>
 				<h1>Hello React!</h1>
 				<ChildComponent />
 				<InfoComp name="Prathamesh" username="Pratham82" />
+				<h3>m1: My favorite band is {this.state.bandName}</h3>
+				<h3>m2: My favorite band is {bandName}</h3>
+				<button onClick={this.handleClick}>Change book Name</button>
+				<h2>My favourite book is: {this.state.book}</h2>
 			</div>
 		);
 	}
