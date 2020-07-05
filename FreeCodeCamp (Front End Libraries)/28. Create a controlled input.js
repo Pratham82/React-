@@ -45,7 +45,7 @@ class ControlledInput extends React.Component {
 				<input
 					type="text"
 					value={this.state.input}
-					onChange={handleChange}
+					onChange={this.handleChange}
 				/>
 				{/* change code above this line */}
 				<h4>Controlled Input:</h4>
