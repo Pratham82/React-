@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "../Daily files/Day 2/Props/App2";
+import Badge from "../Daily files/Day 2/Props exercise/Question 3/Props3";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<Badge />, document.getElementById("root"));
