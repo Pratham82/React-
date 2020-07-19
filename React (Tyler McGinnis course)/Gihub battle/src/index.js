@@ -1,6 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Badge from "../Daily files/Day 2/Props exercise/Question 3/Props3";
+import Popular from "./components/Popular";
 
-ReactDOM.render(<Badge />, document.getElementById("root"));
+class App extends React.Component {
+	render() {
+		// let friends = this.props.friends;
+		// console.log(friends);
+		// Render a list using the "friends" being passed in.
+		return (
+			<div className="container">
+				<Popular />
+			</div>
+		);
+	}
+}
+
+ReactDOM.render(<App />, document.getElementById("app"));
