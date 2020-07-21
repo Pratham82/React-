@@ -1,4 +1,45 @@
 import React from "react";
+import PropTypes from "prop-types";
+
+// Functional component for Navbar
+
+// This function is taking two different props from the parent
+//{ selected, onUpdateLanguage }
+function LanguagesNav(props) {
+	const Languages = ["All", "JavaScript", "Ruby", "Java", "Python", "CSS"];
+	return (
+		<ul className="flex-center">
+			{Languages.map((Language) => (
+				<li key={Language}>
+					<button
+						className="btn-clear nav-link"
+						onClick={() => props.onUpdateLanguage(Language)}
+						// Change the color of the button when that button is selected
+						style={
+							Language === props.selected
+								? {
+										color: "red",
+								  }
+								: null
+						}
+					>
+						{Language}
+					</button>
+				</li>
+			))}
+		</ul>
+	);
+}
+
+// Now we will add propTypes to the Language, propTypes provides type safety for our component be it functional or class components
+
+// So anytime when the props which are mentioned here does not follows the rules we will get a warning
+
+LanguagesNav.propTypes = {
+	// isRequired states to that this property is required, "func" is used instead of "function" because "function" is a reserved keyword in JS
+	selected: PropTypes.string.isRequired,
+	onUpdateLanguage: PropTypes.func.isRequired,
+};
 
 export default class Popular extends React.Component {
 	constructor(props) {
@@ -24,35 +65,21 @@ export default class Popular extends React.Component {
 	}
 
 	render() {
-		const Languages = [
-			"All",
-			"JavaScript",
-			"Ruby",
-			"Java",
-			"Python",
-			"CSS",
-		];
+		// This will take the current selected language from the state
+		const { selectedLanguage } = this.state;
+
+		//* Here we are passing the current state and updateLanguage function inside our LanguagesNav Component as a function
+
+		//* We can either pass them as props or we can pass them as the variables inside the expressions
+
 		return (
-			<ul className="flex-center">
-				{Languages.map((Language) => (
-					<li key={Language}>
-						<button
-							className="btn-clear nav-link"
-							onClick={() => this.updateLanguage(Language)}
-							// Change the color of the button when that button is selected
-							style={
-								Language === this.state.selectedLanguage
-									? {
-											color: "red",
-									  }
-									: null
-							}
-						>
-							{Language}
-						</button>
-					</li>
-				))}
-			</ul>
+			<React.Fragment>
+				<LanguagesNav
+					selected={selectedLanguage}
+					// onUpdateLanguages will refer to the updateLanguage function
+					onUpdateLanguage={this.updateLanguage}
+				/>
+			</React.Fragment>
 		);
 	}
 }
