@@ -1,12 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import { fetchPopularRepos } from "../utils/api";
 // Functional component for Navbar
 
 // This function is taking two different props from the parent
 //{ selected, onUpdateLanguage }
 function LanguagesNav(props) {
-	const Languages = ["All", "JavaScript", "Ruby", "Java", "Python", "CSS"];
+	const Languages = [
+		"All",
+		"JavaScript",
+		"Java",
+		"Python",
+		"C++",
+		"Ruby",
+		"CSS",
+	];
 	return (
 		<ul className="flex-center">
 			{Languages.map((Language) => (
@@ -47,26 +55,58 @@ export default class Popular extends React.Component {
 
 		this.state = {
 			selectedLanguage: "All",
+			repos: null,
+			error: null,
 		};
 
 		//* whenever you make a method, bind the method to correct "this" keyword
 		this.updateLanguage = this.updateLanguage.bind(this);
+		this.isLoading = this.isLoading.bind(this);
 	}
 
-	updateLanguage(newLanguage) {
+	// When the component first getting updated instead of loading pass in "all" languages in updateLanguage method and render the data on the DOM
+	componentDidMount() {
+		this.updateLanguage(this.state.selectedLanguage);
+	}
+
+	updateLanguage(selectedLanguage) {
 		this.setState(
 			{
 				// this will set the selected language to the selected language inside the state
-				selectedLanguage: newLanguage,
+				// We are setting the repos and error to null until the repos are fetching
+				selectedLanguage,
+				repos: null,
+				error: null,
 			},
+
 			// For checking if the selected language is correct
 			() => console.log(this.state.selectedLanguage)
 		);
+
+		//When we got the repositories then we can add them to the state
+		fetchPopularRepos(selectedLanguage)
+			.then((repos) =>
+				this.setState({
+					repos,
+					error: null,
+				})
+			)
+			.catch(() => {
+				console.warn(`Error fetching repos `);
+
+				this.setState({
+					error: "There was an error fetching repositories",
+				});
+			});
+	}
+
+	isLoading() {
+		return this.state.repos === null && this.state.error === null;
 	}
 
 	render() {
 		// This will take the current selected language from the state
-		const { selectedLanguage } = this.state;
+		const { selectedLanguage, repos, error } = this.state;
 
 		//* Here we are passing the current state and updateLanguage function inside our LanguagesNav Component as a function
 
@@ -79,6 +119,13 @@ export default class Popular extends React.Component {
 					// onUpdateLanguages will refer to the updateLanguage function
 					onUpdateLanguage={this.updateLanguage}
 				/>
+
+				{/* If isLoading is truthy then LOADING will evaluate true */}
+				{this.isLoading() && <p>LOADING</p>}
+
+				{error && <p></p>}
+
+				{repos && <pre>{JSON.stringify(repos, null, 2)}</pre>}
 			</React.Fragment>
 		);
 	}
