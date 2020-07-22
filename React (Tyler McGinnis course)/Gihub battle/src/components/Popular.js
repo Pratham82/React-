@@ -55,7 +55,7 @@ export default class Popular extends React.Component {
 
 		this.state = {
 			selectedLanguage: "All",
-			repos: null,
+			repos: {},
 			error: null,
 		};
 
@@ -75,7 +75,9 @@ export default class Popular extends React.Component {
 				// this will set the selected language to the selected language inside the state
 				// We are setting the repos and error to null until the repos are fetching
 				selectedLanguage,
-				repos: null,
+
+				// We are commenting repos because we dont want to fetch them again and again, instead og that we are storing the fetched repo info inside an object
+				// repos: null,
 				error: null,
 			},
 
@@ -83,25 +85,39 @@ export default class Popular extends React.Component {
 			() => console.log(this.state.selectedLanguage)
 		);
 
-		//When we got the repositories then we can add them to the state
-		fetchPopularRepos(selectedLanguage)
-			.then((repos) =>
-				this.setState({
-					repos,
-					error: null,
-				})
-			)
-			.catch(() => {
-				console.warn(`Error fetching repos `);
+		// We don't want to fetch the repository every time we clicked on it instead of that we are going to fetch rpeos only if its not present in the object
+		if (!this.state.repos[selectedLanguage]) {
+			fetchPopularRepos(selectedLanguage)
+				.then((data) => {
+					// Instead of adding the data to the state , we will add it to the as property on repos object
 
-				this.setState({
-					error: "There was an error fetching repositories",
+					// We are going to update the state of our component based on the previous state
+
+					// We aer not going to get rid of previous repo we will keep track of the property to the repos object
+
+					// Here we will call setState but instead of passing it as an object we will pass it  a function, and react is going to invoke this function passing it the current state
+
+					// What we return from this function will be merged with the current state
+					this.setState(({ repos }) => ({
+						repos: {
+							...repos,
+							[selectedLanguage]: data,
+						},
+					}));
+				})
+				.catch(() => {
+					console.warn(`Error fetching repos `);
+
+					this.setState({
+						error: "There was an error fetching repositories",
+					});
 				});
-			});
+		}
 	}
 
 	isLoading() {
-		return this.state.repos === null && this.state.error === null;
+		const { selectedLanguage, repos, error } = this.state;
+		return !repos[selectedLanguage] && error === null;
 	}
 
 	render() {
@@ -123,9 +139,13 @@ export default class Popular extends React.Component {
 				{/* If isLoading is truthy then LOADING will evaluate true */}
 				{this.isLoading() && <p>LOADING</p>}
 
-				{error && <p></p>}
+				{error && <p>{error}</p>}
 
-				{repos && <pre>{JSON.stringify(repos, null, 2)}</pre>}
+				{repos[selectedLanguage] && (
+					<pre>
+						{JSON.stringify(repos[selectedLanguage], null, 2)}
+					</pre>
+				)}
 			</React.Fragment>
 		);
 	}
