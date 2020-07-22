@@ -1,6 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { fetchPopularRepos } from "../utils/api";
+import {
+	FaUser,
+	FaStar,
+	FaCodeBranch,
+	FaExclamationTriangle,
+} from "react-icons/fa";
+import { RiGitRepositoryLine } from "react-icons/ri";
+
 // Functional component for Navbar
 
 // This function is taking two different props from the parent
@@ -38,6 +46,79 @@ function LanguagesNav(props) {
 		</ul>
 	);
 }
+
+function ReposGrid({ repos }) {
+	return (
+		//{JSON.stringify(repos, null, 2)}
+		<ul className="grid space-around">
+			{repos.map((repo, index) => {
+				const {
+					name,
+					owner,
+					html_url,
+					stargazers_count,
+					forks,
+					open_issues,
+				} = repo;
+				const { login, avatar_url } = owner;
+
+				return (
+					<li key={html_url} className="repo bg-light">
+						<h4 className="header-lg center-text">#{index + 1}</h4>
+						<img
+							src={avatar_url}
+							className="avatar"
+							alt={`Avatar for ${login}`}
+						/>
+						<h2 className="center-text ">
+							<a href={html_url} className="link">
+								<FaUser />
+								&nbsp;&nbsp;
+								{login}
+							</a>
+						</h2>
+						<ul className="card-list">
+							{/* <li>
+								<FaUser color="rgb(255,199,116)" size={22} />
+								<a href={`https://github.com/${login}`}>
+									{login}
+								</a>
+							</li> */}
+							<li>
+								<RiGitRepositoryLine color="rgb(4, 131, 250)" />
+								<a href={`https://github.com/${login}/${name}`}>
+									{name}
+								</a>
+							</li>
+							<li>
+								<FaStar color="rgb(255,215,0)" size={22} />
+								{stargazers_count.toLocaleString()} stars
+							</li>
+							<li>
+								<FaCodeBranch
+									color="rgb(129,195,245)"
+									size={22}
+								/>
+								{forks.toLocaleString()} Forks
+							</li>
+							<li>
+								<FaExclamationTriangle
+									color="rgb(241,138,147)"
+									size={22}
+								/>
+								{open_issues.toLocaleString()} Open issues
+							</li>
+						</ul>
+					</li>
+				);
+			})}
+		</ul>
+	);
+}
+
+ReposGrid.propTypes = {
+	repos: PropTypes.array.isRequired,
+};
 
 // Now we will add propTypes to the Language, propTypes provides type safety for our component be it functional or class components
 
@@ -142,9 +223,7 @@ export default class Popular extends React.Component {
 				{error && <p>{error}</p>}
 
 				{repos[selectedLanguage] && (
-					<pre>
-						{JSON.stringify(repos[selectedLanguage], null, 2)}
-					</pre>
+					<ReposGrid repos={repos[selectedLanguage]} />
 				)}
 			</React.Fragment>
 		);
