@@ -8,6 +8,7 @@ import {
 	FaExclamationTriangle,
 } from "react-icons/fa";
 import { RiGitRepositoryLine } from "react-icons/ri";
+import Card from "./Card";
 
 // Functional component for Navbar
 
@@ -63,52 +64,49 @@ function ReposGrid({ repos }) {
 				const { login, avatar_url } = owner;
 
 				return (
-					<li key={html_url} className="card bg-light">
-						<h4 className="header-lg center-text">#{index + 1}</h4>
-						<img
-							src={avatar_url}
-							className="avatar"
-							alt={`Avatar for ${login}`}
-						/>
-						<h2 className="center-text ">
-							<a href={html_url} className="link">
-								<FaUser />
-								&nbsp;&nbsp;
-								{login}
-							</a>
-						</h2>
-						<ul className="card-list">
-							{/* <li>
+					<li key={html_url}>
+						<Card
+							header={`#${index + 1}`}
+							avatar={avatar_url}
+							href={html_url}
+							name={login}
+						>
+							<ul className="card-list">
+								{/* <li>
 								<FaUser color="rgb(255,199,116)" size={22} />
 								<a href={`https://github.com/${login}`}>
 									{login}
 								</a>
 							</li> */}
-							<li>
-								<RiGitRepositoryLine color="rgb(4, 131, 250)" />
-								<a href={`https://github.com/${login}/${name}`}>
-									{name}
-								</a>
-							</li>
-							<li>
-								<FaStar color="rgb(255,215,0)" size={22} />
-								{stargazers_count.toLocaleString()} stars
-							</li>
-							<li>
-								<FaCodeBranch
-									color="rgb(129,195,245)"
-									size={22}
-								/>
-								{forks.toLocaleString()} Forks
-							</li>
-							<li>
-								<FaExclamationTriangle
-									color="rgb(241,138,147)"
-									size={22}
-								/>
-								{open_issues.toLocaleString()} Open issues
-							</li>
-						</ul>
+								<li>
+									<RiGitRepositoryLine color="rgb(4, 131, 250)" />
+									<a
+										href={`https://github.com/${login}/${name}`}
+										style={{ textDecoration: "none" }}
+									>
+										{name}
+									</a>
+								</li>
+								<li>
+									<FaStar color="rgb(255,215,0)" size={22} />
+									{stargazers_count.toLocaleString()} stars
+								</li>
+								<li>
+									<FaCodeBranch
+										color="rgb(129,195,245)"
+										size={22}
+									/>
+									{forks.toLocaleString()} Forks
+								</li>
+								<li>
+									<FaExclamationTriangle
+										color="rgb(241,138,147)"
+										size={22}
+									/>
+									{open_issues.toLocaleString()} Open issues
+								</li>
+							</ul>
+						</Card>
 					</li>
 				);
 			})}
