@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import { RiGitRepositoryLine } from "react-icons/ri";
 import Card from "./Card";
+import Loading from "./Loading";
 
 // Functional component for Navbar
 
@@ -216,7 +217,7 @@ export default class Popular extends React.Component {
 				/>
 
 				{/* If isLoading is truthy then LOADING will evaluate true */}
-				{this.isLoading() && <p>LOADING</p>}
+				{this.isLoading() && <Loading text={"Fetching repos"} />}
 
 				{error && <p className="center-text error">{error}</p>}
 
