@@ -10,6 +10,7 @@ import {
 import { RiGitRepositoryLine } from "react-icons/ri";
 import Card from "./Card";
 import Loading from "./Loading";
+import Tooltip from "./Tooltip";
 
 // Functional component for Navbar
 
@@ -80,13 +81,20 @@ function ReposGrid({ repos }) {
 								</a>
 							</li> */}
 								<li>
-									<RiGitRepositoryLine color="rgb(4, 131, 250)" />
-									<a
-										href={`https://github.com/${login}/${name}`}
-										style={{ textDecoration: "none" }}
-									>
-										{name}
-									</a>
+									<Tooltip text="Github repo">
+										<div>
+											<RiGitRepositoryLine color="rgb(4, 131, 250)" />
+											<a
+												href={`https://github.com/${login}/${name}`}
+												style={{
+													textDecoration: "none",
+												}}
+												target={"blank"}
+											>
+												{name}
+											</a>
+										</div>
+									</Tooltip>
 								</li>
 								<li>
 									<FaStar color="rgb(255,215,0)" size={22} />
