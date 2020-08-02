@@ -31,7 +31,11 @@ li {
 	justify-content: center;
 	align-items: center;
 }
-
+.dark {
+	color: #dadada;
+	background: #1c2022;
+	min-height: 100%;
+}
 .btn-clear {
 	color: white;
 	border: none;
