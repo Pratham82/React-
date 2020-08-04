@@ -5,7 +5,8 @@ import Popular from "./components/Popular";
 import Battle from "./components/Battle";
 import { ThemeProvider } from "./contexts/theme";
 import Nav from "./components/Nav";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Results from "./components/Results";
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -33,8 +34,23 @@ class App extends React.Component {
 							<Nav />
 							{/* <Popular /> */}
 							{/* <Battle /> */}
-							<Route exact path="/" component={Popular} />
-							<Route path="/battle" component={Battle} />
+							<Switch>
+								<Route exact path="/" component={Popular} />
+								<Route
+									exact
+									path="/battle"
+									component={Battle}
+								/>
+								<Route
+									path="/battle/results"
+									component={Results}
+								/>
+								<Route
+									render={() => (
+										<h1>404 Page not found 🤷‍♂</h1>
+									)}
+								/>
+							</Switch>
 						</div>
 					</div>
 				</ThemeProvider>
