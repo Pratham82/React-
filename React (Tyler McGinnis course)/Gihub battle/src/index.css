@@ -283,3 +283,7 @@ li {
 .nav li {
 	margin-right: 10px;
 }
+
+.player-info .player-link {
+	color: rgb(214, 65, 27);
+}
