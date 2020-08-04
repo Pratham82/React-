@@ -12,13 +12,17 @@ const styles = {
 };
 
 export default class Loading extends React.Component {
-	constructor(props) {
-		super(props);
+	state = {
+		content: this.props.text,
+	};
 
-		this.state = {
-			content: props.text,
-		};
-	}
+	// constructor(props) {
+	// 	super(props);
+
+	// 	this.state = {
+	// 		content: props.text,
+	// 	};
+	// }
 
 	componentDidMount() {
 		// Destructuring props

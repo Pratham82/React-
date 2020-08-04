@@ -138,26 +138,31 @@ LanguagesNav.propTypes = {
 };
 
 export default class Popular extends React.Component {
-	constructor(props) {
-		super(props);
+	state = {
+		selectedLanguage: "All",
+		repos: {},
+		error: null,
+	};
+	// constructor(props) {
+	// 	super(props);
 
-		this.state = {
-			selectedLanguage: "All",
-			repos: {},
-			error: null,
-		};
+	// 	this.state = {
+	// 		selectedLanguage: "All",
+	// 		repos: {},
+	// 		error: null,
+	// 	};
 
-		//* whenever you make a method, bind the method to correct "this" keyword
-		this.updateLanguage = this.updateLanguage.bind(this);
-		this.isLoading = this.isLoading.bind(this);
-	}
+	// 	//* whenever you make a method, bind the method to correct "this" keyword
+	// 	this.updateLanguage = this.updateLanguage.bind(this);
+	// 	this.isLoading = this.isLoading.bind(this);
+	// }
 
 	// When the component first getting updated instead of loading pass in "all" languages in updateLanguage method and render the data on the DOM
 	componentDidMount() {
 		this.updateLanguage(this.state.selectedLanguage);
 	}
 
-	updateLanguage(selectedLanguage) {
+	updateLanguage = (selectedLanguage) => {
 		this.setState(
 			{
 				// this will set the selected language to the selected language inside the state
@@ -201,12 +206,12 @@ export default class Popular extends React.Component {
 					});
 				});
 		}
-	}
+	};
 
-	isLoading() {
+	isLoading = () => {
 		const { selectedLanguage, repos, error } = this.state;
 		return !repos[selectedLanguage] && error === null;
-	}
+	};
 
 	render() {
 		// This will take the current selected language from the state
