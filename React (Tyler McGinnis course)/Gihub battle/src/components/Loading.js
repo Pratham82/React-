@@ -16,14 +16,6 @@ export default class Loading extends React.Component {
 		content: this.props.text,
 	};
 
-	// constructor(props) {
-	// 	super(props);
-
-	// 	this.state = {
-	// 		content: props.text,
-	// 	};
-	// }
-
 	componentDidMount() {
 		// Destructuring props
 		const { text, speed } = this.props;
