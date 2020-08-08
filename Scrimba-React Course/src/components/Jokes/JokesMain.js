@@ -1,5 +1,7 @@
 import React from "react";
 import Joke from "./Joke";
+import jokesData from "./JokesData";
+
 // One LAST time in this course, set up a React app from scratch
 // Render an <App /> component
 // App should be in its own file
@@ -15,6 +17,16 @@ import Joke from "./Joke";
 // Spend time practicing the style of your Joke component
 
 export default function JokesMain() {
+	// Passing props to components using map method
+	const JokeComponents = jokesData.map((joke) => (
+		<Joke
+			key={joke.id}
+			question={joke.question}
+			punchLine={joke.punchLine}
+		/>
+	));
+
+	console.log(JokeComponents);
 	return (
 		<div
 			style={{
@@ -27,39 +39,7 @@ export default function JokesMain() {
 			<h1 style={{ color: "white", textAlign: "center" }}>
 				Jokes page 😆
 			</h1>
-
-			<Joke
-				jokesInfo={{
-					question: "My wife told me to stop acting like a flamingo.",
-					punchLine: "I had to put my foot down.",
-				}}
-			/>
-			<Joke
-				jokesInfo={{
-					question:
-						"What is Whitney Houston’s favorite type of coordination? ",
-				}}
-			/>
-			<Joke
-				jokesInfo={{
-					question: "Why are gay people always smiling?",
-					punchLine: "Because they can’t keep a straight face.",
-				}}
-			/>
-			<Joke
-				jokesInfo={{
-					// question: "Why does Waldo wear stripes?",
-					punchLine: "Because he doesn’t want to be spotted.",
-				}}
-			/>
-			<Joke
-				jokesInfo={{
-					question:
-						"What do you do when your hot pants catch on fire?",
-					punchLine: "Put them out with your pantyhose.",
-				}}
-			/>
-			<Joke jokesInfo={{}} />
+			{JokeComponents}
 		</div>
 	);
 }
