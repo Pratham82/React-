@@ -2,10 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import ProductsPage from "./components/VSchool Products/ProductsPage";
+import Main from "./components/Todo/Main";
+// import App from './App'
+
 ReactDOM.render(
 	<React.StrictMode>
 		{/* <App /> */}
-		<ProductsPage />
+		<Main />
 	</React.StrictMode>,
 	document.getElementById("root")
 );
