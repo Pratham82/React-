@@ -1,14 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
-// import Basic from "./Basic";
-import ContactList from "./components/Contact list/ContactList";
-import JokesMain from "./components/Jokes/JokesMain";
+import ProductsPage from "./components/VSchool Products/ProductsPage";
 ReactDOM.render(
 	<React.StrictMode>
 		{/* <App /> */}
-		<JokesMain />
+		<ProductsPage />
 	</React.StrictMode>,
 	document.getElementById("root")
 );
