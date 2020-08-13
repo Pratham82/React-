@@ -1,11 +1,13 @@
 import React from "react";
+import randomcolor from "randomcolor";
 
-export default class ChangeState extends React.Component {
+export default class ChangeStateCounter extends React.Component {
 	constructor() {
 		super();
 
 		this.state = {
 			count: 0,
+			color: "",
 		};
 
 		// Method 1 with normal functions and bind keyword
@@ -75,7 +77,22 @@ export default class ChangeState extends React.Component {
 		});
 	};
 
+	//* LifeCycle methods
+	componentDidMount() {
+		//*  This will be only called for the first time when component is mounted tot DOM
+		console.log("Component mounted");
+	}
+	componentDidUpdate(prevProps, prevState) {
+		const newColor = randomcolor();
+		if (prevState.count != this.state.count) {
+			this.setState({
+				color: newColor,
+			});
+		}
+	}
+
 	render() {
+		console.log("render");
 		const buttonStyle = {
 			border: "none",
 			padding: "6px 15px",
@@ -89,7 +106,9 @@ export default class ChangeState extends React.Component {
 					placeItems: "center",
 				}}
 			>
-				<h1>Current state: {this.state.count}</h1>
+				<h1 style={{ color: this.state.color }}>
+					Current state: {this.state.count}
+				</h1>
 				<button onClick={this.handleClickIncrement} style={buttonStyle}>
 					Increment
 				</button>

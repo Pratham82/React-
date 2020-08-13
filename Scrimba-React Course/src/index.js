@@ -4,13 +4,19 @@ import "./index.css";
 import States from "./components/State management/States";
 import ChangeState from "./components/State management/ChangeState";
 import Events from "./components/Handling Events/Events";
+import Main from "./components/Todo/Main";
+import ConditionalChallenge from './components/Conditional Rendering/ConditionalChallenge'
+//* For strict mode
+// ReactDOM.render(
+// 	<React.StrictMode>
+// 		{/* <ChangeState /> */}
+// 		<ConditionalRender />
+// 	</React.StrictMode>,
+// 	document.getElementById("root")
+// );
 
 ReactDOM.render(
-	<React.StrictMode>
-		{/* <App /> */}
-		{/* <Events number={0} /> */}
-		<ChangeState />
-	</React.StrictMode>,
+	<ConditionalChallenge />,
 	document.getElementById("root")
 );
 
