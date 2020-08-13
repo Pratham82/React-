@@ -1,11 +1,11 @@
 :root {
-	--card_color: rgb(255, 255, 255);
+	--card_color: rgb(243, 243, 243);
 	--bg-light: white;
 	--bg-dark: rgb(39, 38, 38);
 }
 
 body {
-	background-color: var(--bg-dark);
+	background-color: var(--bg-light);
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -49,7 +49,7 @@ body {
 /*TO_DO app Styling*/
 
 .todo-list {
-	background-color: white;
+	background-color: var(--card_color);
 	margin: auto;
 	width: 50%;
 	display: flex;
@@ -69,7 +69,7 @@ body {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	padding: 30px 20px 0;
+	padding: 10px 10px 0 0;
 	width: 70%;
 	border-bottom: 1px solid #cecece;
 	font-family: Roboto, sans-serif;
