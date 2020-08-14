@@ -1,11 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import States from "./components/State management/States";
-import ChangeState from "./components/State management/ChangeState";
-import Events from "./components/Handling Events/Events";
 import Main from "./components/Todo/Main";
-import ConditionalChallenge from './components/Conditional Rendering/ConditionalChallenge'
+import Form1 from './components/Forms/Form1'
+
+
 //* For strict mode
 // ReactDOM.render(
 // 	<React.StrictMode>
@@ -16,7 +15,7 @@ import ConditionalChallenge from './components/Conditional Rendering/Conditional
 // );
 
 ReactDOM.render(
-	<ConditionalChallenge />,
+	<Form1 />,
 	document.getElementById("root")
 );
 
