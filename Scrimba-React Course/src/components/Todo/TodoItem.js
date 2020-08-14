@@ -1,11 +1,19 @@
 import React from "react";
 
-/**
- * Challenge: Get rid of our warning about not having an onChange on our input. For now, the function that runs onChange can simply console.log something.
+
+
+ /**
+ * Challenge: Style the completed todo items differently from the incomplete items.
  */
 
-export default function TodoItem(props) {
+
+ const TodoItem= (props) => {
 	// console.log(props.task.id);
+	 const completedStyles = {
+		 fontStyle: 'italic',
+		 color: 'grey',
+		 textDecoration : 'line-through'
+	 }
 	return (
 		<div className="todo-item">
 			<input
@@ -13,7 +21,14 @@ export default function TodoItem(props) {
 				checked={props.progress}
 				onChange={() => props.handleChange(props.taskID)}
 			/>
-			<p>{props.task}</p>
+			{/* Method -1*/}
+			{/* <p>{!props.progress ? props.task : <span style={{color:'grey'}}><strike><i>{props.task}</i></strike></span> }</p> */}
+
+			{/* Method - 2 */}
+			<p style= {props.progress ? completedStyles: null }> {props.task}</p>
 		</div>
 	);
 }
+
+
+export default TodoItem;
