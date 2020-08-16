@@ -1,11 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import "./index.css";
+import "./index.css";
 // import Main from "./components/Todo/Main";
-import FormsChallenge from './components/Forms/FormsChallenge'
-import FormMain from './components/Forms/FormChallenge/FormMain'
-import MemeGenerator from './components/MemeGenerator/MemeGenerator'
-import './Memes.css'
+// import './Memes.css'
+import UseEffect2 from './components/React Hooks/UseEffect2'
 
 //* For strict mode
 // ReactDOM.render(
@@ -17,7 +15,7 @@ import './Memes.css'
 // );
 
 ReactDOM.render(
-	<MemeGenerator />,
+	<UseEffect2 />,
 	document.getElementById("root")
 );
 
