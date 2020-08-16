@@ -21,15 +21,6 @@ export default class FormsChallenge extends Component {
 		};
 	}
 
-	// Last Name:  ${this.state.lastName}
-	// Age:  ${this.state.age}
-	// Gender:  ${this.state.gender}
-	// Location:  ${this.state.country}
-	handleSubmit() {
-		let firstName = this.state.firstName;
-		alert("First Name ");
-	}
-
 	handleChange = (event) => {
 		// Take the required fields from event.target
 		const { name, value, type, checked } = event.target;
