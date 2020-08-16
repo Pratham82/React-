@@ -1,0 +1,7 @@
+React Hooks
+
+1. React hooks are used to "hook into" state and lifecycle of method components without using clases.
+2.  Previously we used to the class components for accessing states and lifecycle methods
+3. Now you don't even need states or lifecycle methods
+4. This allows us to use only functional components across the board
+5. Hooks also imporove the readability and organization of components
