@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Slot Machine</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<style>
+		body {
+			height: 100vh;
+			background-color: #ebf745;
+			font-family: Fira code;
+		}
+		.btn-div {
+			margin-top: 30px;
+			text-align: center;
+		}
+		.btn {
+			border: none;
+			border-radius: 5px;
+			padding: 8px 15px;
+			font-size: 20px;
+			background-color: #ffa30f;
+			color: white;
+		}
+	</style>
+	<body>
+		<h1 style="text-align: center; color: rgb(255, 104, 4);">
+			Slot machine
+		</h1>
+
+		<div id="root"></div>
+		<div class="btn-div">
+			<button onClick="window.location.reload();" class="btn">
+				Refresh Page
+			</button>
+		</div>
+		<script src="https://unpkg.com/react/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+
+		<script src="https://unpkg.com/babel-standalone"></script>
+		<script src="Machine.js" type="text/jsx"></script>
+		<script src="index.js" type="text/jsx"></script>
+	</body>
+</html>
