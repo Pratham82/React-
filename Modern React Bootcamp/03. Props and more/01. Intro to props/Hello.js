@@ -1,4 +1,10 @@
 class Hello extends React.Component {
+	//* Default Props (If the props is not passed down from the parent, so we can use default props)
+	static defaultProps = {
+		bangs: 1,
+		arr: [1, 1, 1],
+	};
+
 	render() {
 		console.log(this.props);
 		return (
