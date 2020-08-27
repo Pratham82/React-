@@ -1,8 +1,9 @@
 class Machine extends React.Component {
 	render() {
-		let random1 = parseInt(Math.random() * this.props.ingredients.length);
-		let random2 = parseInt(Math.random() * this.props.ingredients.length);
-		let random3 = parseInt(Math.random() * this.props.ingredients.length);
+		let ingredientsLength = this.props.ingredients.length;
+		let random1 = parseInt(Math.random() * ingredientsLength);
+		let random2 = parseInt(Math.random() * ingredientsLength);
+		let random3 = parseInt(Math.random() * ingredientsLength);
 		let arr = this.props.ingredients;
 		let res = [arr[random1], arr[random2], arr[random3]];
 		const childStyle = {
