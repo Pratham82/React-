@@ -38,17 +38,41 @@ export default class PokeDex extends React.Component {
 			},
 			{ id: 133, name: "Eevee", type: "normal", base_experience: 65 },
 		];
+		// console.log("Data", data);
+		const pokeData = this.props.pokemons;
 
 		const pokeDexStyle = {
 			display: "flex",
 			flexWrap: "wrap",
+			padding: "10px 20px",
+			borderRadius: "8px",
+		};
+
+		const colorCheck = this.props.isWinner ? "green" : "red";
+
+		const headingStyle = {
+			fontFamily: "Fira Code",
+			textAlign: "center",
+			lineHeight: "0",
+			color: colorCheck,
 		};
 
 		return (
-			<div style={pokeDexStyle}>
-				{data.map((val) => (
-					<PokeCard pokeData={val} />
-				))}
+			<div>
+				{this.props.isWinner ? (
+					<p style={headingStyle}>
+						Winner Total score: {this.props.TotalXP}
+					</p>
+				) : (
+					<p style={headingStyle}>
+						Looser Total score: {this.props.TotalXP}
+					</p>
+				)}
+				<div style={pokeDexStyle}>
+					{pokeData.map((val) => (
+						<PokeCard pokeData={val} key={val.id} />
+					))}
+				</div>
 			</div>
 		);
 	}
