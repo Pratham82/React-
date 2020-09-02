@@ -1,0 +1,62 @@
+.outerContainer {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.innerContainer {
+	display: flex;
+	justify-content: center;
+
+	align-items: center;
+}
+
+.btnStyle {
+	text-align: center;
+	color: white;
+	margin-top: 50px;
+	border: none;
+	padding: 10px 25px;
+	background-image: linear-gradient(to right, #ed4264, #fbd15e);
+	font-size: 20px;
+	border-radius: 7px;
+}
+
+.btnStyle:hover {
+	transform: scale(0.98);
+	cursor: pointer;
+}
+
+.dieNormal {
+	margin: 10px 20px;
+	font-size: 100px;
+	color: rgba(251, 135, 81, 1.5);
+}
+
+.dieShaking {
+	animation: shake 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+	10%,
+	90% {
+		transform: translate3d(-10px, 0, 0);
+	}
+
+	20%,
+	80% {
+		transform: translate3d(5px, 0, 0);
+	}
+
+	30%,
+	50%,
+	70% {
+		transform: translate3d(-10px, 0, 0);
+	}
+
+	40%,
+	60% {
+		transform: translate3d(10px, 0, 0);
+	}
+}
