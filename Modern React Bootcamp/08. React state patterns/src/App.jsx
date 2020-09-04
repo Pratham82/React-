@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import ScoreKeeper from "./components/ScoreKeeper.jsx";
+import Lotto from "./components/Lotto";
 
 export default class App extends Component {
 	render() {
 		return (
-			<div className="outerContainer">
-				<div className="innerContainer">
-					<ScoreKeeper />
-				</div>
+			<div>
+				<Lotto title="New Lottery" maxBalls="5" maxNum="10" />
 			</div>
 		);
 	}
