@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
-import CoinContainer from "./Components/ConFlipper";
+import ParentBox from "./Components/Color boxes/ParentBox";
+
 function App() {
 	return (
 		<div className="App">
-			<CoinContainer />
+			<ParentBox />
 		</div>
 	);
 }
