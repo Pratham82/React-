@@ -26,8 +26,8 @@ class BetterNumberList extends Component {
 		}));
 
 	render() {
-		const numList = this.state.numbers.map((val) => (
-			<BetterNumberItem key={val} value={val} rem={this.removeNum} />
+		const numList = this.state.numbers.map((val, index) => (
+			<BetterNumberItem key={index} value={val} rem={this.removeNum} />
 		));
 
 		return (
