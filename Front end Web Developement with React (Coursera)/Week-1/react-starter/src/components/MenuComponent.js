@@ -1,32 +1,12 @@
 import React, { Component } from "react";
-import {
-	Media,
-	Card,
-	CardImg,
-	CardImgOverlay,
-	CardBody,
-	CardTitle,
-	CardText,
-} from "reactstrap";
-import dishes from "../shared/dishes";
-import DishDetail from "./DishDetailComponent";
+import { Card, CardImg, CardImgOverlay, CardBody, CardTitle } from "reactstrap";
 
+// * Class based component
 export default class Menu extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { dishes, selectedDish: null };
-	}
-
-	onDishSelect = (dish) => {
-		this.setState({
-			selectedDish: dish,
-		});
-	};
-
 	render() {
-		const menu = this.state.dishes.map((item) => (
+		const menu = this.props.dishes.map((item) => (
 			<div key={item.id} className="col-12 col-md-5 m-1">
-				<Card onClick={() => this.onDishSelect(item)}>
+				<Card onClick={() => this.props.onClick(item.id)}>
 					<CardImg
 						object
 						src={item.image}
@@ -45,7 +25,6 @@ export default class Menu extends Component {
 		return (
 			<div className="container">
 				<div className="row">{menu}</div>
-				<DishDetail dish={this.state.selectedDish} />
 			</div>
 		);
 	}

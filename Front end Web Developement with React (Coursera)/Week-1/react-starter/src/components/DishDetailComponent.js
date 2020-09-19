@@ -1,20 +1,10 @@
 import React, { Component } from "react";
-import {
-	Media,
-	Card,
-	CardImg,
-	CardBody,
-	CardTitle,
-	CardText,
-} from "reactstrap";
-export default class DishDetail extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {};
-	}
+import { Card, CardImg, CardBody, CardTitle, CardText } from "reactstrap";
 
+//* Class bases components
+export default class DishDetail extends Component {
 	renderDish = (dish) => {
-		return dish !== null ? (
+		return dish !== undefined ? (
 			<React.Fragment>
 				<div className="col-12 col-md-5 m-1">
 					<Card>
@@ -67,6 +57,10 @@ export default class DishDetail extends Component {
 	};
 
 	render() {
-		return <div className="row">{this.renderDish(this.props.dish)} </div>;
+		return (
+			<div className="container">
+				<div className="row">{this.renderDish(this.props.dish)} </div>
+			</div>
+		);
 	}
 }
