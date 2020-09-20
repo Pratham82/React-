@@ -8,6 +8,8 @@ import {
 	Label,
 	Input,
 	Col,
+	Row,
+	FormFeedback,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
@@ -22,6 +24,12 @@ export default class Contact extends Component {
 			agree: false,
 			contactType: "Tel.",
 			message: "",
+			touched: {
+				firstname: false,
+				lastname: false,
+				telnum: false,
+				email: false,
+			},
 		};
 	}
 
@@ -42,7 +50,59 @@ export default class Contact extends Component {
 		e.preventDefault();
 	};
 
+	handleBlur = (field) => (e) => {
+		this.setState({
+			touched: { ...this.state.touched, [field]: true },
+		});
+	};
+
+	handleKeyUp = (field) => (e) => {
+		this.setState({
+			touched: { ...this.state.touched, [field]: true },
+		});
+	};
+
+	validate(firstname, lastname, telnum, email) {
+		const errors = {
+			firstname: "",
+			lastname: "",
+			telnum: "",
+			email: "",
+		};
+
+		if (this.state.touched.firstname && firstname.length < 3) {
+			errors.firstname = "The First Name should  be >=3 characters";
+		} else if (this.state.touched.firstname && firstname.length > 10) {
+			errors.firstname = "The First Name should  be <= 10 characters";
+		}
+
+		if (this.state.touched.lastname && lastname.length < 3) {
+			errors.lastname = "The Last Name should  be >=3 characters";
+		} else if (this.state.touched.lastname && lastname.length > 10) {
+			errors.lastname = "The First Name should  be <= 10 characters";
+		}
+
+		const regexTel = /^[0-9]{10}$/;
+		if (this.state.touched.telnum && !regexTel.test(telnum)) {
+			errors.telnum =
+				"Enter a valid phone number which must be 10 digits long";
+		}
+
+		const regexEmail = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+		if (this.state.touched.email && !regexEmail.test(email)) {
+			errors.email = "Please enter a valid Email ID";
+		}
+
+		return errors;
+	}
+
 	render() {
+		const errors = this.validate(
+			this.state.firstname,
+			this.state.lastname,
+			this.state.telnum,
+			this.state.email
+		);
 		return (
 			<div className="container">
 				<div className="row">
@@ -118,12 +178,19 @@ export default class Contact extends Component {
 								<Col md={10}>
 									<Input
 										onChange={this.handleInputChange}
+										// onBlur={this.handleBlur("firstname")}
+										onKeyUp={this.handleKeyUp("firstname")}
+										valid={errors.firstname === ""}
+										invalid={errors.firstname !== ""}
 										type="text"
 										id="firstname"
 										name="firstname"
 										placeholder="First Name"
 										value={this.state.firstname}
 									/>
+									<FormFeedback>
+										{errors.firstname}
+									</FormFeedback>
 								</Col>
 							</FormGroup>
 							<FormGroup row>
@@ -133,12 +200,19 @@ export default class Contact extends Component {
 								<Col md={10}>
 									<Input
 										onChange={this.handleInputChange}
+										// onBlur={this.handleBlur("lastname")}
+										onKeyUp={this.handleKeyUp("lastname")}
+										valid={errors.lastname === ""}
+										invalid={errors.lastname !== ""}
 										type="text"
 										id="lastname"
 										name="lastname"
 										placeholder="Last Name"
 										value={this.state.lastname}
 									/>
+									<FormFeedback>
+										{errors.lastname}
+									</FormFeedback>
 								</Col>
 							</FormGroup>
 							<FormGroup row>
@@ -148,12 +222,17 @@ export default class Contact extends Component {
 								<Col md={10}>
 									<Input
 										onChange={this.handleInputChange}
+										// onBlur={this.handleBlur("telnum")}
+										onKeyUp={this.handleKeyUp("telnum")}
+										valid={errors.telnum === ""}
+										invalid={errors.telnum !== ""}
 										type="tel"
 										id="telnum"
 										name="telnum"
 										placeholder="Tel. Number"
 										value={this.state.telnum}
 									/>
+									<FormFeedback>{errors.telnum}</FormFeedback>
 								</Col>
 							</FormGroup>
 							<FormGroup row>
@@ -163,12 +242,17 @@ export default class Contact extends Component {
 								<Col md={10}>
 									<Input
 										onChange={this.handleInputChange}
+										// onBlur={this.handleBlur("email")}
+										onKeyUp={this.handleKeyUp("email")}
+										valid={errors.email === ""}
+										invalid={errors.email !== ""}
 										type="tel"
 										id="email"
 										name="email"
 										placeholder="Email ID"
 										value={this.state.email}
 									/>
+									<FormFeedback>{errors.email}</FormFeedback>
 								</Col>
 							</FormGroup>
 							<FormGroup row>
