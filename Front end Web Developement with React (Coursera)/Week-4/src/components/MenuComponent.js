@@ -10,12 +10,18 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import Loading from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
 
 //* Functional component
 const RenderMenuItem = ({ dish }) => (
 	<Card>
 		<Link to={`/menu/${dish.id}`}>
-			<CardImg object src={dish.image} alt={dish.name} width="100%" />
+			<CardImg
+				object
+				src={baseUrl + dish.image}
+				alt={dish.name}
+				width="100%"
+			/>
 			<CardImgOverlay>
 				<CardBody>
 					<CardTitle>{dish.name}</CardTitle>
