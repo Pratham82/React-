@@ -17,6 +17,7 @@ import {
 } from "reactstrap";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { Link } from "react-router-dom";
+import Loading from "./LoadingComponent";
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
@@ -153,27 +154,46 @@ class CommentForm extends Component {
 }
 
 //* Functional components
-const RenderDish = ({ dish }) =>
-	dish !== undefined ? (
-		<React.Fragment>
-			<div className="col-12 col-md-5 m-1">
-				<Card>
-					<CardImg
-						object
-						src={dish.image}
-						alt={dish.name}
-						width="100%"
-					/>
-					<CardBody>
-						<CardTitle>{dish.name}</CardTitle>
-						<CardText>{dish.description}</CardText>
-					</CardBody>
-				</Card>
+const RenderDish = ({ dish, isLoading, errMess }) => {
+	if (isLoading) {
+		return (
+			<div className="container">
+				<div className="row">
+					<Loading />
+				</div>
 			</div>
-		</React.Fragment>
-	) : (
-		<div></div>
-	);
+		);
+	} else if (errMess) {
+		return (
+			<div className="container">
+				<div className="row">
+					<h4>{errMess}</h4>
+				</div>
+			</div>
+		);
+	} else if (dish !== undefined) {
+		return (
+			<React.Fragment>
+				<div className="col-12 col-md-5 m-1">
+					<Card>
+						<CardImg
+							object
+							src={dish.image}
+							alt={dish.name}
+							width="100%"
+						/>
+						<CardBody>
+							<CardTitle>{dish.name}</CardTitle>
+							<CardText>{dish.description}</CardText>
+						</CardBody>
+					</Card>
+				</div>
+			</React.Fragment>
+		);
+	} else {
+		return <div></div>;
+	}
+};
 
 const RenderComments = ({ comment, addComments, dishId }) =>
 	comment !== null ? (
@@ -203,31 +223,42 @@ const dateFormate = {
 const dateFormatter = (date) =>
 	new Date(date).toLocaleDateString("en-US", dateFormate);
 
-const DishDetail = (props) => (
-	<div className="container">
-		<div className="row">
-			<div className="row">
-				<Breadcrumb>
-					<BreadcrumbItem>
-						<Link to="/menu">Menu</Link>
-					</BreadcrumbItem>
-					<BreadcrumbItem>{props.dish.name}</BreadcrumbItem>
-				</Breadcrumb>
-				<div className="col-12">
-					<h3>{props.dish.name}</h3>
-					<hr />
-				</div>
+const DishDetail = (props) => {
+	if (props.isLoading) {
+		return <Loading />;
+	} else if (props.errMess) {
+		return <h4>{props.errMess}</h4>;
+	} else
+		return (
+			<div className="container">
 				<div className="row">
-					<RenderDish dish={props.dish} />
-					<RenderComments
-						comment={props.comments}
-						addComments={props.addComments}
-						dishId={props.dish.id}
-					/>
+					<div className="row">
+						<Breadcrumb>
+							<BreadcrumbItem>
+								<Link to="/menu">Menu</Link>
+							</BreadcrumbItem>
+							<BreadcrumbItem>{props.dish.name}</BreadcrumbItem>
+						</Breadcrumb>
+						<div className="col-12">
+							<h3>{props.dish.name}</h3>
+							<hr />
+						</div>
+						<div className="row">
+							<RenderDish
+								dish={props.dish}
+								isLoading={props.isLoading}
+								errMess={props.errMess}
+							/>
+							<RenderComments
+								comment={props.comments}
+								addComments={props.addComments}
+								dishId={props.dish.id}
+							/>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-);
+		);
+};
 
 export default DishDetail;
