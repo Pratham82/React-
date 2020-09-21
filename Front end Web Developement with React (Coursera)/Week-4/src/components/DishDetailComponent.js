@@ -37,7 +37,7 @@ class CommentForm extends Component {
 	submitHandle = (values) => {
 		this.handleToggle(values);
 		// alert(`Current state is: ${JSON.stringify(values)}`);
-		this.props.addComments(
+		this.props.postComments(
 			this.props.dishId,
 			values.rating,
 			values.author,
@@ -196,7 +196,7 @@ const RenderDish = ({ dish, isLoading, errMess }) => {
 	}
 };
 
-const RenderComments = ({ comment, addComments, dishId }) =>
+const RenderComments = ({ comment, postComments, dishId }) =>
 	comment !== null ? (
 		<div className="col-12 col-md-5 m-1">
 			<h4>Comments</h4>
@@ -209,7 +209,7 @@ const RenderComments = ({ comment, addComments, dishId }) =>
 						<br />
 					</React.Fragment>
 				))}
-				<CommentForm dishId={dishId} addComments={addComments} />
+				<CommentForm dishId={dishId} postComments={postComments} />
 			</ul>
 		</div>
 	) : (
@@ -252,7 +252,7 @@ const DishDetail = (props) => {
 							/>
 							<RenderComments
 								comment={props.comments}
-								addComments={props.addComments}
+								postComments={props.postComments}
 								dishId={props.dish.id}
 							/>
 						</div>
