@@ -19,6 +19,7 @@ import { Control, LocalForm, Errors } from "react-redux-form";
 import { Link } from "react-router-dom";
 import Loading from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
+import { FadeTransform, Fade, Stagger } from "react-animation-components";
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
@@ -176,18 +177,25 @@ const RenderDish = ({ dish, isLoading, errMess }) => {
 		return (
 			<React.Fragment>
 				<div className="col-12 col-md-5 m-1">
-					<Card>
-						<CardImg
-							object
-							src={baseUrl + dish.image}
-							alt={dish.name}
-							width="100%"
-						/>
-						<CardBody>
-							<CardTitle>{dish.name}</CardTitle>
-							<CardText>{dish.description}</CardText>
-						</CardBody>
-					</Card>
+					<FadeTransform
+						in
+						transformProps={{
+							exitTransform: "scale(0.5) translateY(-50%)",
+						}}
+					>
+						<Card>
+							<CardImg
+								object
+								src={baseUrl + dish.image}
+								alt={dish.name}
+								width="100%"
+							/>
+							<CardBody>
+								<CardTitle>{dish.name}</CardTitle>
+								<CardText>{dish.description}</CardText>
+							</CardBody>
+						</Card>
+					</FadeTransform>
 				</div>
 			</React.Fragment>
 		);
@@ -203,10 +211,14 @@ const RenderComments = ({ comment, postComments, dishId }) =>
 			<ul className="list-unstyled">
 				{comment.map((c) => (
 					<React.Fragment key={c.id}>
-						<li>{c.comment}</li>
-						<br />
-						<li>{`-- ${c.author}, ${dateFormatter(c.date)}`}</li>
-						<br />
+						<Stagger in>
+							<li>{c.comment}</li>
+							<br />
+							<li>{`-- ${c.author}, ${dateFormatter(
+								c.date
+							)}`}</li>
+							<br />
+						</Stagger>
 					</React.Fragment>
 				))}
 				<CommentForm dishId={dishId} postComments={postComments} />
@@ -234,28 +246,38 @@ const DishDetail = (props) => {
 			<div className="container">
 				<div className="row">
 					<div className="row">
-						<Breadcrumb>
-							<BreadcrumbItem>
-								<Link to="/menu">Menu</Link>
-							</BreadcrumbItem>
-							<BreadcrumbItem>{props.dish.name}</BreadcrumbItem>
-						</Breadcrumb>
-						<div className="col-12">
-							<h3>{props.dish.name}</h3>
-							<hr />
-						</div>
-						<div className="row">
-							<RenderDish
-								dish={props.dish}
-								isLoading={props.isLoading}
-								errMess={props.errMess}
-							/>
-							<RenderComments
-								comment={props.comments}
-								postComments={props.postComments}
-								dishId={props.dish.id}
-							/>
-						</div>
+						<FadeTransform
+							in
+							transformProps={{
+								exitTransform: "scale(0.5) translateY(-50%)",
+							}}
+						>
+							<Breadcrumb>
+								<BreadcrumbItem>
+									<Link to="/menu">Menu</Link>
+								</BreadcrumbItem>
+								<BreadcrumbItem>
+									{props.dish.name}
+								</BreadcrumbItem>
+							</Breadcrumb>
+							<div className="col-12">
+								<h3>{props.dish.name}</h3>
+								<hr />
+							</div>
+							<div className="row">
+								<RenderDish
+									dish={props.dish}
+									isLoading={props.isLoading}
+									errMess={props.errMess}
+								/>
+
+								<RenderComments
+									comment={props.comments}
+									postComments={props.postComments}
+									dishId={props.dish.id}
+								/>
+							</div>
+						</FadeTransform>
 					</div>
 				</div>
 			</div>
