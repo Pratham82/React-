@@ -1,0 +1,31 @@
+
+/*
+ 
+Ways we can write the components in React 
+
+1. Most Modern way with JSX
+
+return <div className="App">
+           <h2>Github Finder</h2>
+      </div>
+
+-----------------------------------------
+With use of Fragments instead of the Divs
+
+1. <React.Fragment> Content in JSX</React.Fragment>
+2. <Fragment> Content in JSX </Fragment>
+3. <> Content in JSX </>
+
+
+----------------------------------------
+2.  Using the Old way of writing pure JavaScript
+
+   return React.createElement(
+      "div",
+      { className: "App" },
+      React.createElement("h2", null, "Github Finder")
+    );
+
+
+
+*/
