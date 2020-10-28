@@ -1,19 +1,19 @@
-import React, { Component } from "react";
-import "./App.css";
+import React, { Component } from "react"
+import "./App.css"
+import Navbar from "./components/layout/Navbar"
+import Users from "./components/users/Users"
 
 class App extends Component {
   render() {
-    const name = "Prathamesh";
-    const foo = () => "bar";
-    const loading = true;
     return (
       <div className="App">
-        {loading && <h2>Github finder</h2>}
-        {name && <h2>Hello {name} How are you?</h2>}
-        <h2> Hello {foo()}</h2>{" "}
+        <Navbar />
+        <div className="container">
+          <Users />
+        </div>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
