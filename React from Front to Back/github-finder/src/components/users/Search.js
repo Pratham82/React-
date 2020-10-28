@@ -13,10 +13,6 @@ export default class Search extends Component {
     this.setState({ text: "" })
   }
 
-  handleKeyPress = (e) => {
-    this.props.searchUser(this.state.text)
-  }
-
   render() {
     return (
       <form className="form" onSubmit={this.handleSubmit}>
@@ -26,7 +22,6 @@ export default class Search extends Component {
           value={this.state.text}
           placeholder="Search Usernames"
           onChange={this.handleChange}
-          onKeyUp={this.handleKeyPress}
         />
         <input
           type="submit"
