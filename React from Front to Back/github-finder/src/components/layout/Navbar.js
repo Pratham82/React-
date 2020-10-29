@@ -8,8 +8,10 @@ const Navbar = ({ title, icon }) => {
       {" "}
       <h1>
         {" "}
-        <i className={icon} />
-        &nbsp; {title}
+        <Link to="/">
+          <i className={icon}></i> &nbsp;
+          {title}
+        </Link>
       </h1>{" "}
       <ul>
         <li>
