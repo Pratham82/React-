@@ -10,14 +10,19 @@ export default class Search extends Component {
     searchUser: PropTypes.func.isRequired,
     clearUser: PropTypes.func.isRequired,
     showClear: PropTypes.bool.isRequired,
+    setAlert: PropTypes.func.isRequired,
   }
 
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value })
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.searchUser(this.state.text)
-    this.setState({ text: "" })
+    if (this.state.text === "") {
+      this.props.setAlert("Please enter something", "light")
+    } else {
+      this.props.searchUser(this.state.text)
+      this.setState({ text: "" })
+    }
   }
 
   handleClick = () => console.log("check")
