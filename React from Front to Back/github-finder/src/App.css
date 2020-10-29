@@ -7,6 +7,8 @@
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
+  --warning-color: #fcbf07;
+  --normal-color: #137bf2;
 }
 
 * {
@@ -282,6 +284,22 @@ img {
 .badge-success,
 .alert-success {
   background: var(--success-color);
+  color: #fff;
+}
+
+.btn-warning,
+.bg-warning,
+.badge-warning,
+.alert-warning {
+  background: var(--warning-color);
+  color: #fff;
+}
+
+.btn-normal,
+.bg-normal,
+.badge-normal,
+.alert-normal {
+  background: var(--normal-color);
   color: #fff;
 }
 
