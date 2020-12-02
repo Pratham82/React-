@@ -36,15 +36,15 @@ const Person = ({ name, birthDate, birthLocation }: PersonProps) => (
     </h4>
     <h4>
       {' '}
-      <b>Location Longitude</b> {birthLoaction.longitude}
+      <b>Location Longitude</b> {birthLocation.longitude}
     </h4>
     <h4>
       {' '}
-      <b>Location Latitude</b> {birthLoaction.latitude}
+      <b>Location Latitude</b> {birthLocation.latitude}
     </h4>
     <h4>
       {' '}
-      <b>Location Height</b> {birthLoaction.height + 'M'}
+      <b>Location Height</b> {birthLocation.height + 'M'}
     </h4>
   </div>
 )
