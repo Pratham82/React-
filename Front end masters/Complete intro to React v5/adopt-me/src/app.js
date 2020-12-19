@@ -1,10 +1,6 @@
-const Pet = ({ name, animal, breed }) => {
-  return React.createElement('div', {}, [
-    React.createElement('h1', {}, 'Name: ', name),
-    React.createElement('h2', {}, 'Animal: ', animal),
-    React.createElement('h2', {}, 'Breed: ', breed),
-  ])
-}
+import React from 'react'
+import { render } from 'react-dom'
+import Pet from './Pet'
 
 const App = () => {
   return React.createElement('div', { id: 'Some info' }, [
@@ -26,4 +22,4 @@ const App = () => {
     }),
   ])
 }
-ReactDOM.render(React.createElement(App), document.getElementById('root'))
+render(React.createElement(App), document.getElementById('root'))
