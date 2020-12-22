@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Luna",
+    "animal": "Dog",
+    "breed": "Pomeranian"
+  },
+  {
+    "name": "Pepper",
+    "animal": "Bird",
+    "breed": "Cocktatiel"
+  },
+  {
+    "name": "Doink",
+    "animal": "Cat",
+    "breed": "Mixed"
+  }
+]
